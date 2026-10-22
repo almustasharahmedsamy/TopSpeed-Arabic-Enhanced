@@ -306,6 +306,7 @@ private:
     DirectX::Sound*         m_soundLeft;
     
 
+    // Arabic Enhanced Edition: preserve single-player and multiplayer modes.
     Item                    m_mainMenu[6];
     Item                    m_timeTrial[5];
     Item                    m_singleRace[5];

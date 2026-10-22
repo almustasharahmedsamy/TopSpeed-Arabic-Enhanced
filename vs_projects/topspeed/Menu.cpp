@@ -395,6 +395,7 @@ m_soundServerStarted            = m_game->loadLanguageSound("menu\\serverstarted
     m_mainMenu[1].action = a_timeTrial;
     m_mainMenu[2].sound  = m_soundSingleRace;
     m_mainMenu[2].action = a_singleRace;
+    // Arabic Enhanced Edition: retain local/network multiplayer from the original.
     m_mainMenu[3].sound  = m_soundMultiplayer;
     m_mainMenu[3].action = a_multiplayer;
     m_mainMenu[4].sound  = m_soundOptions;

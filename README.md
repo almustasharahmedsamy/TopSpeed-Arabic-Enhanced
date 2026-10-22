@@ -1,21 +1,57 @@
-This repository contains the source code of Playing in the Dark Top Speed 3.0.4. 
-You need the following to get at least any further:
+# Top Speed Arabic Enhanced
 
-* Microsoft Visual Studio 2008+: Successfully built with VS 2008 Pro. You might be able to build using an express version
-* DirectX SDK august 2007: At least one which contains direct play support. The include and Lib folders need to be in the folder vs_projects/dxsdk
-* LibOGG, LibVorbis and LibVorbisStatic libraries available from vorbis.com: I think we used libogg-1.2.0 and libvorbis-1.3.1, not sure whether newer versions work. Both libraries contain include folders, ogg and vorbis respectively. These need to be in the root of vs_projects, f.e. vs_projects/ogg
+نسخة مطوّرة ومُعَرَّبة من لعبة السباق الصوتية **Top Speed 3.0.4**، مبنية على السورس المفتوح الأصلي من Playing in the Dark.
 
-## Steps to build
+## بيانات النسخة
 
-1. Make sure you decide between debug or release, *don't* use them both together. The debug comfiguration profiles could be good starting points.
-2. Build CommonStatic, and put common.lib into the root of dxcommon.
-3. Build DXCommonStatic. Put common.lib and dxcommon.lib into the root of topspeed, rename them to CommonStatic.lib and DXCommonStatic.lib, respectively.
-4. Build libogg, libvorbis and libvorbisfile, the static ones please. Those three need to be in the root of topspeed as well, with the prefix lib removed, f.e. ogg_static.lib.
-5. You might now be able to build top speed 3 successfully.
+- اسم اللعبة: **Top Speed Arabic Enhanced**
+- المطوّر/صاحب التعديلات: **أحمد سامي**
+- نوع اللعب: فردي ضد الكمبيوتر + لعب جماعي محلي/شبكي وأونلاين
+- المنصة الحالية: Windows
+- الترخيص: GNU GPL v3
 
-## Notes
+> تنبيه حقوقي: الكود الأصلي وحقوقه محفوظة لأصحابه الأصليين Playing in the Dark. اسم أحمد سامي يشير إلى تطوير هذه النسخة والتعديلات المضافة، وليس إلى تأليف الكود الأصلي.
 
-* We won't give support on building this project. If you don't manage, you won't be skilled enough to make any interesting changes anyway. Please *don't!* contact us with questions or complaints about not being able to build.
-* The roots of this code are very old. DirectPlay is discontinued for over 5 years now, and some design choices are very outdated.
-* Copyright 2003-2013 Playing in the Dark (http://www.playinginthedark.net)
-* This program is distributed under the terms of version 3 of the GNU General Public License
+## المزايا الموجودة في السورس
+
+- سباق صوتي مناسب للمكفوفين.
+- لعب فردي ضد منافسين بالكمبيوتر.
+- Time Trial وSingle Race وStreet Adventure.
+- دعم السيارات والحلبات المخصّصة.
+- دعم الصوت ثلاثي الأبعاد وأصوات المحرك والفرامل والاصطدام.
+- دعم أذرع التحكم وعجلة القيادة وForce Feedback.
+- دعم اللعب الجماعي والاتصال الشبكي الموجود في السورس الأصلي، بما في ذلك الاستضافة والانضمام والبحث عن الخوادم.
+- اختيار عدد اللفات والمنافسين ومستوى الصعوبة.
+
+## التعديلات والتحسينات في هذه النسخة
+
+- إعادة تنظيم المشروع كإصدار مستقل باسم Top Speed Arabic Enhanced.
+- الاحتفاظ باللعب الجماعي والأونلاين وعدم إخفائهما من القائمة الرئيسية.
+- إضافة ملف توثيق عربي لخطة التعريب والتطوير.
+- إعداد هيكل واضح لإضافة ملفات الصوت العربية في `installer/tspeed/Sounds/ar/`.
+- توثيق نظام ملفات السيارات `.vhc` لإضافة سيارات جديدة وتعديل السرعة والتسارع والتوجيه وعدد الغيارات.
+- تجهيز خطة لإضافة نظام ترقيات ونيترو وحفظ تقدم، مع عدم الادعاء بأن هذه الأنظمة مكتملة قبل تنفيذها واختبارها.
+
+## البناء
+
+المشروع قديم ويحتاج بيئة Windows متوافقة مع:
+
+- Microsoft Visual Studio 2008 أو إصدار أحدث يدعم مشاريع Visual C++ القديمة.
+- DirectX SDK August 2007، مع DirectPlay.
+- مكتبات libogg وlibvorbis وlibvorbisfile الثابتة.
+
+راجع [تعليمات البناء الأصلية](README.md) وملف [ARABIC_OFFLINE_EDITION.md](ARABIC_OFFLINE_EDITION.md) للتفاصيل الحالية.
+
+## الصوت العربي
+
+واجهة اللعبة تعتمد بدرجة كبيرة على ملفات صوتية منطوقة. لإضافة العربية، تُنشأ ملفات WAV أو OGG بنفس أسماء ومسارات ملفات اللغة الإنجليزية داخل:
+
+```text
+installer/tspeed/Sounds/ar/
+```
+
+ويجب تسجيل الصوت العربي الطبيعي أو توفيره من مصدر مرخّص، مع اختبار كل رسالة داخل اللعبة.
+
+## الترخيص
+
+هذا المشروع موزّع تحت GNU General Public License v3. راجع [LICENSE](LICENSE). يجب الاحتفاظ بحقوق المشروع الأصلي عند توزيع النسخة المعدلة.
