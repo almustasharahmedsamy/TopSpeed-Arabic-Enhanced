@@ -1,0 +1,50 @@
+name: Build Top Speed Arabic Enhanced
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-windows:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Check legacy dependencies
+        shell: pwsh
+        run: |
+          $required = @(
+            "vs_projects/dxsdk/include",
+            "vs_projects/dxsdk/Lib",
+            "vs_projects/ogg/include",
+            "vs_projects/vorbis/include"
+          )
+          $missing = $required | Where-Object { -not (Test-Path $_) }
+          if ($missing.Count -gt 0) {
+            Write-Error ("Missing legacy build dependencies: " + ($missing -join ", ") + ". See README.md and BUILD-WINDOWS.md.")
+          }
+
+      - name: Build Release Win32
+        run: msbuild vs_projects/topspeed/TopSpeed.sln /m /p:Configuration=Release /p:Platform=Win32 /p:PlatformToolset=v143
+
+      - name: Package game files
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          Copy-Item installer/tspeed/* dist -Recurse -Force
+          Get-ChildItem -Path vs_projects -Recurse -Filter *.exe | Copy-Item -Destination dist -Force
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TopSpeed-Arabic-Enhanced-Windows
+          path: dist
+          if-no-files-found: error

@@ -1,0 +1,15 @@
+enginesound=builtin2
+startsound=builtin2
+hornsound=builtin4
+crashsound=builtin3
+brakesound=builtin6
+acceleration=20
+deceleration=44
+topspeed=30000
+idlefreq=11025
+topfreq=72000
+shiftfreq=52000
+numberofgears=6
+steering=190
+steeringfactor=78
+haswipers=1

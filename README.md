@@ -42,6 +42,8 @@
 
 راجع [تعليمات البناء الأصلية](README.md) وملف [ARABIC_OFFLINE_EDITION.md](ARABIC_OFFLINE_EDITION.md) للتفاصيل الحالية.
 
+للبناء التلقائي على GitHub راجع [BUILD-WINDOWS.md](BUILD-WINDOWS.md). ولخطة السيارات والمناطق والبيئات الجديدة راجع [EXPANSION_CONTENT.md](EXPANSION_CONTENT.md).
+
 ## الصوت العربي
 
 واجهة اللعبة تعتمد بدرجة كبيرة على ملفات صوتية منطوقة. لإضافة العربية، تُنشأ ملفات WAV أو OGG بنفس أسماء ومسارات ملفات اللغة الإنجليزية داخل:
