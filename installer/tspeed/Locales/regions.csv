@@ -1,0 +1,21 @@
+id,region,city,route,environment,ar_name,en_name,fr_name,ja_name,zh_name
+1,القاهرة,القاهرة,وسط البلد - الدائري,night_city,القاهرة,Cairo,Le Caire,カイロ,开罗
+2,الرياض,الرياض,الطريق الدائري - الدرعية,desert,Riyadh,Riyadh,Riyad,リヤド,利雅得
+3,دبي,دبي,المرسى - شارع الشيخ زايد,night_city,Dubai,Dubai,Dubaï,ドバイ,迪拜
+4,الدار البيضاء,الدار البيضاء,الكورنيش - الميناء,coast,Casablanca,Casablanca,Casablanca,カサブランカ,卡萨布兰卡
+5,إسطنبول,إسطنبول,البوسفور - الطريق الساحلي,coast,Istanbul,Istanbul,Istanbul,イスタンブール,伊斯坦布尔
+6,أبوظبي,أبوظبي,الكورنيش - ياس,coast,Abu Dhabi,Abu Dhabi,Abou Dabi,アブダビ,阿布扎比
+7,جدة,جدة,الكورنيش - طريق مكة,coast,Jeddah,Jeddah,Djeddah,ジェッダ,吉达
+8,طوكيو,طوكيو,طريق خليج طوكيو,night_city,Tokyo,Tokyo,Tokyo,東京,东京
+9,باريس,باريس,الطريق الدائري - الضفاف,night_city,Paris,Paris,Paris,パリ,巴黎
+10,كيب تاون,كيب تاون,الطريق الساحلي - الجبل,coast,Cape Town,Cape Town,Le Cap,ケープタウン,开普敦
+11,الجيزة,الجيزة,المريوطية - أكتوبر,desert,Giza,Giza,Gizeh,ギザ,吉萨
+12,الإسكندرية,الإسكندرية,الكورنيش - برج العرب,coast,Alexandria,Alexandria,Alexandrie,アレクサンドリア,亚历山大
+13,الدقهلية,المنصورة,المنصورة - طلخا,city,Mansoura,Mansoura,Mansoura,マンスーラ,曼苏拉
+14,البحر الأحمر,الغردقة,الغردقة - سفاجا,desert,Red Sea,Red Sea,Mer Rouge,紅海,红海
+15,البحيرة,دمنهور,دمنهور - كفر الدوار,city,Beheira,Beheira,Béhéra,ベヘイラ,贝海拉
+16,الفيوم,الفيوم,الفيوم - بحيرة قارون,desert,Faiyum,Faiyum,Fayoum,ファイユーム,法尤姆
+17,الغربية,طنطا,طنطا - المحلة,city,Gharbia,Gharbia,Gharbia,ガルビーヤ,西部省
+18,الإسماعيلية,الإسماعيلية,القناة - فايد,coast,Ismailia,Ismailia,Ismaïlia,イスマイリア,伊斯梅利亚
+19,المنوفية,شبين الكوم,شبين الكوم - السادات,city,Monufia,Monufia,Monufia,モヌフィア,穆努菲亚
+20,المنيا,المنيا,المنيا - سمالوط,desert,Minya,Minya,M הת?

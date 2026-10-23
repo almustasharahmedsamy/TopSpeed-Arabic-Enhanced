@@ -1,0 +1,28 @@
+key,ar,en,fr,ja,zh
+quickstart,بداية سريعة,Quick Start,Démarrage rapide,クイックスタート,快速开始
+time_trial,تجربة زمنية,Time Trial,Contre-la-montre,タイムトライアル,计时赛
+single_race,سباق فردي,Single Race,Course individuelle,シングルレース,单人比赛
+multiplayer,لعب جماعي,Multiplayer,Multijoueur,マルチプレイヤー,多人游戏
+online_game,لعب عبر الإنترنت,Online Game,Jeu en ligne,オンラインゲーム,在线游戏
+options,الإعدادات,Options,Options,オプション,设置
+quit,خروج,Quitter,終了,退出
+select_vehicle,اختر المركبة,Select Vehicle,Sélectionner un véhicule,車両を選択,选择车辆
+select_region,اختر المنطقة,Select Region,Sélectionner une région,地域を選択,选择地区
+select_environment,اختر البيئة,Select Environment,Sélectionner un environnement,環境を選択,选择环境
+upgrade_vehicle,تطوير المركبة,Upgrade Vehicle,Améliorer le véhicule,車両をアップグレード,升级车辆
+engine,المحرك,Engine,Moteur,エンジン,发动机
+brakes,الفرامل,Brakes,Freins,ブレーキ,刹车
+handling,التحكم,Handling,Maniabilité,ハンドリング,操控
+nitro,نيترو,Nitro,Nitro,ニトロ,氮气加速
+weather,الطقس,Weather,Météo,天気,天气
+clear,صحو,Clear,Dégagé,晴れ,晴朗
+rain,مطر,Rain,Pluie,雨,下雨
+snow,ثلج,Snow,Neige,雪,下雪
+desert,صحراء,Desert,D désert,砂漠,沙漠
+night_city,مدينة ليلية,Night City,City nocturne,夜の都市,夜间城市
+coast,ساحل,Coast,Côte,海岸,海岸
+mountains,جبال,Mountains,Montagnes,山岳,山区
+save,حفظ,Save,Enregistrer,保存,保存
+back,رجوع,Back,Retour,戻る,返回
+confirm,تأكيد,Confirm,Confirmer,確認,确认
+cancel,إلغاء,Cancel,Annuler,キャンセル,取消

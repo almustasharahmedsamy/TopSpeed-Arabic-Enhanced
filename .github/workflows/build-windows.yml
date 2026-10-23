@@ -10,7 +10,7 @@ on:
 jobs:
   build-windows:
     runs-on: windows-2022
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -18,19 +18,47 @@ jobs:
       - name: Install MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Check legacy dependencies
+      - name: Install legacy DirectX SDK
         shell: pwsh
         run: |
-          $required = @(
-            "vs_projects/dxsdk/include",
-            "vs_projects/dxsdk/Lib",
-            "vs_projects/ogg/include",
-            "vs_projects/vorbis/include"
-          )
-          $missing = $required | Where-Object { -not (Test-Path $_) }
-          if ($missing.Count -gt 0) {
-            Write-Error ("Missing legacy build dependencies: " + ($missing -join ", ") + ". See README.md and BUILD-WINDOWS.md.")
-          }
+          $exe = "$env:TEMP\DXSDK_Jun10.exe"
+          Invoke-WebRequest -Uri "https://download.microsoft.com/download/A/E/7/AE743F1F-632B-4809-87A9-AA1BB3458E31/DXSDK_Jun10.exe" -OutFile $exe
+          $install = "C:\Program Files (x86)\Microsoft DirectX SDK"
+          Start-Process -FilePath $exe -ArgumentList "/P `"$install`" /U" -Wait -NoNewWindow
+          New-Item -ItemType Directory -Force -Path vs_projects/dxsdk | Out-Null
+          Copy-Item "$install\Include" vs_projects/dxsdk -Recurse -Force
+          Copy-Item "$install\Lib" vs_projects/dxsdk -Recurse -Force
+
+      - name: Install OGG and Vorbis with vcpkg
+        shell: pwsh
+        run: |
+          git clone --depth 1 https://github.com/microsoft/vcpkg.git "$env:RUNNER_TEMP\vcpkg"
+          & "$env:RUNNER_TEMP\vcpkg\bootstrap-vcpkg.bat" -disableMetrics
+          & "$env:RUNNER_TEMP\vcpkg\vcpkg.exe" install ogg:x86-windows-static vorbis:x86-windows-static --clean-after-build
+          $root = "$env:RUNNER_TEMP\vcpkg\installed\x86-windows-static"
+          New-Item -ItemType Directory -Force -Path vs_projects/ogg,vs_projects/vorbis | Out-Null
+          Copy-Item "$root\include\ogg" vs_projects/ogg -Recurse -Force
+          Copy-Item "$root\include\vorbis" vs_projects/vorbis -Recurse -Force
+          Copy-Item "$root\lib\ogg.lib" vs_projects/topspeed/ogg_static.lib -Force
+          Copy-Item "$root\lib\vorbis.lib" vs_projects/topspeed/vorbis_static.lib -Force
+          Copy-Item "$root\lib\vorbisfile.lib" vs_projects/topspeed/vorbisfile_static.lib -Force
+
+      - name: Build CommonStatic
+        run: msbuild vs_projects/common/CommonStatic.sln /m /p:Configuration=Release /p:Platform=Win32 /p:PlatformToolset=v143
+
+      - name: Stage CommonStatic for DxCommon
+        shell: pwsh
+        run: |
+          Copy-Item vs_projects/Output/CommonStatic.lib vs_projects/dxcommon/CommonStatic.lib -Force
+
+      - name: Build DxCommonStatic
+        run: msbuild vs_projects/dxcommon/DxCommonStatic.sln /m /p:Configuration=Release /p:Platform=Win32 /p:PlatformToolset=v143
+
+      - name: Stage static libraries
+        shell: pwsh
+        run: |
+          Copy-Item vs_projects/Output/CommonStatic.lib vs_projects/topspeed/CommonStatic.lib -Force
+          Copy-Item vs_projects/Output/DxCommonStatic.lib vs_projects/topspeed/DxCommonStatic.lib -Force
 
       - name: Build Release Win32
         run: msbuild vs_projects/topspeed/TopSpeed.sln /m /p:Configuration=Release /p:Platform=Win32 /p:PlatformToolset=v143

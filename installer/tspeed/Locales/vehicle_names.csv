@@ -1,0 +1,11 @@
+id,key,ar,en,fr,ja,zh,category
+1,ahmed_sport,صقر رياضي,Falcon Sport,Faucon Sport,ファルコン・スポーツ,猎鹰跑车,sport
+2,ahmed_turbo,توربو الصحراء,Desert Turbo,Turbo du désert,デザート・ターボ,沙漠涡轮,sport
+3,ahmed_rally,سهم الرالي,Rally Arrow,Flèche de rallye,ラリー・アロー,拉力箭,rally
+4,ahmed_gt,جولدن جي تي,Golden GT,Golden GT,ゴールデンGT,黄金GT,gt
+5,ahmed_drag,نبضة السرعة,Speed Pulse,Impulsion de vitesse,スピード・パルス,速度脉冲,drag
+6,city_hatch,مدينة مدمجة,City Hatch,Compacte urbaine,シティ・ハッチ,城市掀背,urban
+7,eco_electric,نبض كهربائي,Eco Electric,Électrique éco,エコ・エレクトリック,环保电动,electric
+8,utility_van,ناقل الخدمات,Utility Van,Fourgon utilitaire,ユーティリティ・バン,多功能厢式车,utility
+9,emergency_rescue,إنقاذ سريع,Rescue Runner,Secours rapide,レスキュー・ランナー,救援快车,emergency
+10,autonomous_vision,رؤية ذكية,Vision Autonomous,Vision autonome,ビジョン自動運転,智能自动驾驶,autonomous
