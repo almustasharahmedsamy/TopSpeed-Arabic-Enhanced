@@ -34,7 +34,7 @@ jobs:
         run: |
           git clone --depth 1 https://github.com/microsoft/vcpkg.git "$env:RUNNER_TEMP\vcpkg"
           & "$env:RUNNER_TEMP\vcpkg\bootstrap-vcpkg.bat" -disableMetrics
-          & "$env:RUNNER_TEMP\vcpkg\vcpkg.exe" install ogg:x86-windows-static vorbis:x86-windows-static --clean-after-build
+          & "$env:RUNNER_TEMP\vcpkg\vcpkg.exe" install libogg:x86-windows-static libvorbis:x86-windows-static --clean-after-build
           $root = "$env:RUNNER_TEMP\vcpkg\installed\x86-windows-static"
           New-Item -ItemType Directory -Force -Path vs_projects/ogg,vs_projects/vorbis | Out-Null
           Copy-Item "$root\include\ogg" vs_projects/ogg -Recurse -Force
