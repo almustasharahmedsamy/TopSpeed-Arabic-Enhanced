@@ -5,7 +5,7 @@ single_race,سباق فردي,Single Race,Course individuelle,シングルレー
 multiplayer,لعب جماعي,Multiplayer,Multijoueur,マルチプレイヤー,多人游戏
 online_game,لعب عبر الإنترنت,Online Game,Jeu en ligne,オンラインゲーム,在线游戏
 options,الإعدادات,Options,Options,オプション,设置
-quit,خروج,Quitter,終了,退出
+quit,خروج,Quit,Quitter,終了,退出
 select_vehicle,اختر المركبة,Select Vehicle,Sélectionner un véhicule,車両を選択,选择车辆
 select_region,اختر المنطقة,Select Region,Sélectionner une région,地域を選択,选择地区
 select_environment,اختر البيئة,Select Environment,Sélectionner un environnement,環境を選択,选择环境
@@ -18,7 +18,7 @@ weather,الطقس,Weather,Météo,天気,天气
 clear,صحو,Clear,Dégagé,晴れ,晴朗
 rain,مطر,Rain,Pluie,雨,下雨
 snow,ثلج,Snow,Neige,雪,下雪
-desert,صحراء,Desert,D désert,砂漠,沙漠
+desert,صحراء,Desert,Désert,砂漠,沙漠
 night_city,مدينة ليلية,Night City,City nocturne,夜の都市,夜间城市
 coast,ساحل,Coast,Côte,海岸,海岸
 mountains,جبال,Mountains,Montagnes,山岳,山区
