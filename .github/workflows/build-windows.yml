@@ -18,6 +18,24 @@ jobs:
       - name: Install MSBuild
         uses: microsoft/setup-msbuild@v2
 
+      - name: Upgrade legacy Visual Studio solutions
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+          $devenv = Join-Path $vsPath "Common7\IDE\devenv.com"
+          if (-not (Test-Path $devenv)) { throw "Visual Studio devenv.com was not found at $devenv" }
+          $solutions = @(
+            "vs_projects/common/CommonStatic.sln",
+            "vs_projects/dxcommon/DxCommonStatic.sln",
+            "vs_projects/topspeed/TopSpeed.sln"
+          )
+          foreach ($solution in $solutions) {
+            Write-Host "Upgrading $solution"
+            & $devenv $solution /Upgrade
+            if ($LASTEXITCODE -ne 0) { throw "Visual Studio upgrade failed for $solution" }
+          }
+
       - name: Install legacy DirectX SDK
         shell: pwsh
         run: |
