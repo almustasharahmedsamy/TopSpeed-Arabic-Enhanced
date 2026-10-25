@@ -42,7 +42,7 @@
 
 راجع [تعليمات البناء الأصلية](README.md) وملف [ARABIC_OFFLINE_EDITION.md](ARABIC_OFFLINE_EDITION.md) للتفاصيل الحالية.
 
-للبناء التلقائي على GitHub راجع [BUILD-WINDOWS.md](BUILD-WINDOWS.md). ولخطة السيارات والمناطق والبيئات الجديدة راجع [EXPANSION_CONTENT.md](EXPANSION_CONTENT.md).
+للبناء التلقائي على GitHub راجع [BUILD-WINDOWS.md](BUILD-WINDOWS.md). ولخطة السيارات والمناطق والبيئات الجديدة راجع [EXPANSION_CONTENT.md](EXPANSION_CONTENT.md). ولخطة تحديث المحرك وفصل DirectX 8 عن Backend حديث راجع [ENGINE_MODERNIZATION.md](ENGINE_MODERNIZATION.md).
 
 ## الصوت العربي
 
