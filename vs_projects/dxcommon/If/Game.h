@@ -9,6 +9,7 @@
 
 #include <DxCommon/If/Internal.h>
 #include <DxCommon/If/Input.h>
+#include <DxCommon/If/Backend.h>
 #include <DxCommon/If/D3DFont.h>
 #include <DxCommon/If/Timer.h>
 
@@ -56,6 +57,7 @@ public:
     _dxcommon_         void  enablePointFilter( )                  { m_textureFilter = D3DTEXF_POINT;  }
 
     _dxcommon_ LPDIRECT3DDEVICE8 d3dDevice( )                      { return m_d3dDevice; }
+    _dxcommon_ IRenderBackend* renderBackend( )                    { return &m_renderBackend; }
 
 public:
     _dxcommon_ class Control3D
@@ -134,6 +136,7 @@ protected:
     
     LPDIRECT3DDEVICE8       m_d3dDevice;           // Class to handle D3D device
     D3DPRESENT_PARAMETERS   m_d3dPresentParameters;
+    LegacyD3D8RenderBackend m_renderBackend;       // Stage-2 compatibility boundary
 
     D3DFont*                m_font;
     InputManager*           m_input;

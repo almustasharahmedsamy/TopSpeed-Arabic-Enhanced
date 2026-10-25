@@ -64,6 +64,7 @@ Game::~Game( )
 {
     DXCOMMON("(-) Game.");
 
+    m_renderBackend.shutdown();
     SAFE_DELETE(m_control3D);
     SAFE_DELETE(m_input);
 
@@ -136,13 +137,9 @@ Int Game::run(/* Int keyboardAccelerator */)
         else
         {
             static Int frame = 0;
-            // Clear the scene
-            m_d3dDevice->Clear(0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER,
-                               m_backgroundColor, 1.0f, 0x00000000);
-
             m_input->update( );
 
-            if (m_d3dDevice->BeginScene())
+            if (m_renderBackend.beginFrame(m_backgroundColor))
             {
                 static Huge FPS = 0;
                 Huge helapsed = m_timer.microElapsed( );
@@ -165,9 +162,7 @@ Int Game::run(/* Int keyboardAccelerator */)
                     m_font->drawText(0, 0, (UInt)DirectX::Color::yellow, FPS_text);
                 }
                 
-                // End the scene
-                m_d3dDevice->EndScene();
-                m_d3dDevice->Present( 0, 0, 0, 0 );
+                m_renderBackend.endFrame();
             }
        
         }
@@ -418,6 +413,15 @@ Int Game::initializeDisplay( )
     }
 
     m_control3D = new Control3D(this, m_d3dDevice, m_screenWidth, m_screenHeight);
+
+    BackendFrameInfo frame;
+    frame.width = (unsigned int)m_screenWidth;
+    frame.height = (unsigned int)m_screenHeight;
+    if (!m_renderBackend.initialize(m_d3dDevice, frame))
+    {
+        DXCOMMON("(!) Game::initializeDisplay : couldn't initialize render backend.");
+        return dxFailed;
+    }
 
     DXCOMMON("Game::initializeDisplay : successfully initialized 3D mode.");
 
