@@ -43,9 +43,19 @@ jobs:
           Invoke-WebRequest -Uri "https://download.microsoft.com/download/A/E/7/AE743F1F-632B-4809-87A9-AA1BB3458E31/DXSDK_Jun10.exe" -OutFile $exe
           $install = "C:\Program Files (x86)\Microsoft DirectX SDK"
           Start-Process -FilePath $exe -ArgumentList "/P `"$install`" /U" -Wait -NoNewWindow
-          New-Item -ItemType Directory -Force -Path vs_projects/dxsdk | Out-Null
-          Copy-Item "$install\Include" vs_projects/dxsdk -Recurse -Force
-          Copy-Item "$install\Lib" vs_projects/dxsdk -Recurse -Force
+          $header = Get-ChildItem -Path $install -Filter d3d8types.h -Recurse -File | Select-Object -First 1
+          $library = Get-ChildItem -Path $install -Filter d3d8.lib -Recurse -File | Select-Object -First 1
+          if (-not $header) { throw "DirectX SDK header d3d8types.h was not found below $install" }
+          if (-not $library) { throw "DirectX SDK library d3d8.lib was not found below $install" }
+          $sdkInclude = $header.Directory.FullName
+          $sdkLib = $library.Directory.FullName
+          New-Item -ItemType Directory -Force -Path vs_projects/dxsdk/Include,vs_projects/dxsdk/Lib | Out-Null
+          Copy-Item "$sdkInclude\*" vs_projects/dxsdk/Include -Recurse -Force
+          Copy-Item "$sdkLib\*" vs_projects/dxsdk/Lib -Recurse -Force
+          "INCLUDE=$((Resolve-Path 'vs_projects/dxsdk/Include').Path);$env:INCLUDE" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          "LIB=$((Resolve-Path 'vs_projects/dxsdk/Lib').Path);$env:LIB" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host "DirectX headers copied from $sdkInclude"
+          Write-Host "DirectX libraries copied from $sdkLib"
 
       - name: Install OGG and Vorbis with vcpkg
         shell: pwsh
