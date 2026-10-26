@@ -202,6 +202,10 @@
 					>
 				</File>
 				<File
+					RelativePath="Src\D3D12Bootstrapper.cpp"
+					>
+				</File>
+				<File
 					RelativePath="Src\Common.cpp"
 				>
 				<FileConfiguration

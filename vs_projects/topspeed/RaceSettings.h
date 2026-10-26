@@ -14,6 +14,12 @@
 class RaceSettings
 {
 public:
+    enum RenderBackend
+    {
+        backendDirectX8 = 0,
+        backendDirectX12 = 1
+    };
+
     RaceSettings( );
     virtual ~RaceSettings( );
 
@@ -68,6 +74,7 @@ public: /* yeah, I know, just being lazy */
     Int                         randomCustomTracks;
     Int                         randomCustomVehicles;
     Int                         singleRaceCustomVehicles;
+    Int                         renderBackend;
 };
 
 

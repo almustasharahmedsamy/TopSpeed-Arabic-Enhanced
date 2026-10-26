@@ -38,6 +38,8 @@
 
 **الحالة: طبقة DirectX 12 أولية منفذة خلف الواجهة.** تمت إضافة `BackendD3D12.h` و`BackendD3D12.cpp`، ويطبق `D3D12RenderBackend` عقد `IRenderBackend`. الطبقة تنفذ انتقال مورد الإطار بين `PRESENT` و`RENDER_TARGET`، وعمليات clear ورفع أوامر الرسم إلى command queue ثم `Present`.
 
+تمت إضافة `D3D12Bootstrapper` لإنشاء الجهاز والطابور والـSwap Chain وRTV وCommand Allocator وCommand List. كما تمت إضافة `renderBackend` إلى `RaceSettings` وقائمة الإعدادات، مع خيار DirectX 8 أو DirectX 12. الاختيار يُحفظ في `TopSpeed.bin` ويُستخدم كبوابة التشغيل التالية؛ DirectX 8 يظل افتراضيًا إلى أن يتم نقل موارد ومحولات الرسم القديمة بالكامل.
+
 التنفيذ يستقبل `D3D12BackendContext` من bootstrapper خارجي، لذلك لا يخلط إنشاء الجهاز والـswap chain داخل منطق اللعبة القديم. هذا يمنع تسريب COM resources ويجعل تفعيل DirectX 12 مرحلة مستقلة قابلة للاختبار. تم تفعيل تعريف `DXCOMMON_ENABLE_D3D12` في مشروع DxCommon فقط؛ أما `Game` فما زال يستخدم LegacyD3D8RenderBackend إلى أن يتم توفير bootstrapper واختبارات GPU كاملة.
 
 الخيار المستهدف هو DirectX 12 على Windows 10/11. سيتم تنفيذ Backend جديد باستخدام:

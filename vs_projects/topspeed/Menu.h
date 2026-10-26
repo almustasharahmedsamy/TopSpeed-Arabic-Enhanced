@@ -133,6 +133,7 @@ private:
 //    void gotoOptionsSingleCustomVehicles( );
     void gotoOptionsThreeD( );
     void gotoOptionsHardwareAcceleration( );
+    void gotoOptionsBackend( );
     void gotoOptionsReverseStereo( );
     void gotoOptionsRestore( );
     void stopMultiplayer( );
@@ -351,7 +352,8 @@ private:
     Item                    m_optionsControls[5];
     Item                    m_optionsForceFeedback[3];
     Item                    m_optionsDevice[3];
-    Item                    m_optionsGameSettings[7];
+    Item                    m_optionsGameSettings[8];
+    Item                    m_optionsBackend[3];
     Item                    m_optionsRaceSettings[7];
     Item                    m_optionsCopilot[4];
     Item                    m_optionsCurves[3];

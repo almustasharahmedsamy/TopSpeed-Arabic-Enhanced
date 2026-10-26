@@ -63,6 +63,7 @@ RaceSettings::RaceSettings( ) :
     randomCustomTracks(0),
     randomCustomVehicles(0),
     singleRaceCustomVehicles(0),
+    renderBackend(backendDirectX8),
     serverNumber(random(4999) + 1000)
 {
     RACE("(+) RaceSettings");
@@ -141,6 +142,9 @@ RaceSettings::read( )
         randomCustomTracks          = settingsFile.readInt( );
         randomCustomVehicles          = settingsFile.readInt( );
         singleRaceCustomVehicles          = settingsFile.readInt( );
+        renderBackend          = settingsFile.readInt( );
+        if (renderBackend != backendDirectX12)
+            renderBackend = backendDirectX8;
     }
 }
     
@@ -200,6 +204,7 @@ settingsFile.writeKeyString("lang", language);
     settingsFile.writeInt((Int) randomCustomTracks);
     settingsFile.writeInt((Int) randomCustomVehicles);
     settingsFile.writeInt((Int) singleRaceCustomVehicles);
+    settingsFile.writeInt((Int) renderBackend);
 }
 
 
@@ -250,4 +255,5 @@ RaceSettings::restoreDefaults( )
     randomCustomTracks          = 0;
     randomCustomVehicles          = 0;
     singleRaceCustomVehicles          = 0;
+    renderBackend       = backendDirectX8;
 }

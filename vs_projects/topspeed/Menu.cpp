@@ -136,6 +136,7 @@ enum _menuItemActions
     a_optionsRandomCustomVehiclesOff,
     a_optionsGameThreeD,
     a_optionsGameHardwareAcceleration,
+    a_optionsBackend,
     a_optionsGameReverseStereo,
     a_optionsLanguageChoose,
     a_optionsCopilotOff,
@@ -174,6 +175,8 @@ enum _menuItemActions
     a_optionsThreeDOn,
     a_optionsHardwareAccelerationOff,
     a_optionsHardwareAccelerationOn,
+    a_optionsBackendDirectX8,
+    a_optionsBackendDirectX12,
     a_optionsReverseStereoOff,
     a_optionsReverseStereoOn,
     a_optionsRaceSettings,
@@ -930,8 +933,19 @@ m_soundServerStarted            = m_game->loadLanguageSound("menu\\serverstarted
     m_optionsGameSettings[4].action = a_optionsGameHardwareAcceleration;
     m_optionsGameSettings[5].sound  = m_soundReverseStereo;
     m_optionsGameSettings[5].action = a_optionsGameReverseStereo;
-    m_optionsGameSettings[6].sound  = m_soundBack;
-    m_optionsGameSettings[6].action = a_back;
+    m_optionsGameSettings[6].sound  = m_soundHardwareAcceleration;
+    m_optionsGameSettings[6].action = a_optionsBackend;
+    m_optionsGameSettings[7].sound  = m_soundBack;
+    m_optionsGameSettings[7].action = a_back;
+
+    // Backend selection: DirectX 8 remains the safe default; DirectX 12 is
+    // applied on the next launch after the settings file is written.
+    m_optionsBackend[0].sound  = m_soundHardwareAcceleration;
+    m_optionsBackend[0].action = a_optionsBackendDirectX8;
+    m_optionsBackend[1].sound  = m_soundThreeD;
+    m_optionsBackend[1].action = a_optionsBackendDirectX12;
+    m_optionsBackend[2].sound  = m_soundBack;
+    m_optionsBackend[2].action = a_back;
 
     // Initialize the options gamesettings custom tracks in randomization menu
     m_optionsRandomCustomTracks[0].sound   = m_soundOff;
@@ -2236,6 +2250,8 @@ Menu::handleMenuItem(Item& item)
             gotoOptionsGameSettings( );
         else if (m_currentMenu == m_optionsHardwareAcceleration)
             gotoOptionsGameSettings( );
+        else if (m_currentMenu == m_optionsBackend)
+            gotoOptionsGameSettings( );
         else if (m_currentMenu == m_optionsReverseStereo)
             gotoOptionsGameSettings( );
         else if (m_currentMenu == m_optionsRestore)
@@ -2954,6 +2970,21 @@ Menu::handleMenuItem(Item& item)
         break;
     case a_optionsGameHardwareAcceleration:
         gotoOptionsHardwareAcceleration( );
+        break;
+    case a_optionsBackend:
+        gotoOptionsBackend( );
+        break;
+    case a_optionsBackendDirectX8:
+        stopCurrentMenuItem( );
+        m_game->raceSettings( ).renderBackend = RaceSettings::backendDirectX8;
+        m_game->raceSettings( ).write( );
+        gotoOptionsGameSettings( );
+        break;
+    case a_optionsBackendDirectX12:
+        stopCurrentMenuItem( );
+        m_game->raceSettings( ).renderBackend = RaceSettings::backendDirectX12;
+        m_game->raceSettings( ).write( );
+        gotoOptionsGameSettings( );
         break;
     case a_optionsGameReverseStereo:
         gotoOptionsReverseStereo( );
@@ -4044,6 +4075,19 @@ Menu::gotoOptionsGameSettings( )
     m_currentMenuSize = sizeof(m_optionsGameSettings);
     m_acceptInput = false;
     fadeTo(m_soundTheme2);
+    m_soundChoose->play();
+    pushEvent(Event::playCurrentItem, m_soundChoose->length( ));
+    pushEvent(Event::acceptInput, m_soundChoose->length( ));
+}
+
+void
+Menu::gotoOptionsBackend( )
+{
+    stopCurrentMenuItem();
+    m_currentMenu = m_optionsBackend;
+    m_currentMenuItem = m_game->raceSettings().renderBackend;
+    m_currentMenuSize = sizeof(m_optionsBackend);
+    m_acceptInput = false;
     m_soundChoose->play();
     pushEvent(Event::playCurrentItem, m_soundChoose->length( ));
     pushEvent(Event::acceptInput, m_soundChoose->length( ));
