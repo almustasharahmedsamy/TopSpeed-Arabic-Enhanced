@@ -46,7 +46,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="0"
 				AdditionalIncludeDirectories="..\Dxsdk\Include; ..\"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;DXCOMMON_STATIC;COMMON_STATIC;_USE_VORBIS_"
+					PreprocessorDefinitions="WIN32;NDEBUG;_LIB;DXCOMMON_STATIC;COMMON_STATIC;_USE_VORBIS_;DXCOMMON_ENABLE_D3D12"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -121,7 +121,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\Dxsdk\Include; ..\"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;COMMON_STATIC;DXCOMMON_STATIC;_USE_VORBIS_"
+					PreprocessorDefinitions="WIN32;_DEBUG;_LIB;COMMON_STATIC;DXCOMMON_STATIC;_USE_VORBIS_;DXCOMMON_ENABLE_D3D12"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -175,9 +175,9 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
-			<File
-				RelativePath="Src\Application.cpp"
-				>
+				<File
+					RelativePath="Src\Application.cpp"
+					>
 				<FileConfiguration
 					Name="Release|Win32"
 					>
@@ -196,9 +196,13 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="Src\Common.cpp"
+				</File>
+				<File
+					RelativePath="Src\BackendD3D12.cpp"
+					>
+				</File>
+				<File
+					RelativePath="Src\Common.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
